@@ -1,0 +1,10 @@
+{
+  "name": "MainBot",
+  "version": "1.0",
+  "authors": ["Bimo ganteng anjay"],
+  "description": "A bot that drives forward and backward, and fires a bullet",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}
