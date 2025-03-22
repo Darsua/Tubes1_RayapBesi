@@ -1,0 +1,10 @@
+{
+  "name": "IkanLele",
+  "version": "1.0",
+  "authors": ["Bimo ganteng anjay"],
+  "description": "Lock musuh dan goyang seperti ikan lele",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}

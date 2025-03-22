@@ -1,8 +1,8 @@
 {
-  "name": "MainBot",
+  "name": "SuperSub",
   "version": "1.0",
   "authors": ["Bimo ganteng anjay"],
-  "description": "A bot that drives forward and backward, and fires a bullet",
+  "description": "Seperti Anthony Santos ya Ges ya",
   "homepage": "",
   "countryCodes": ["id"],
   "platform": ".Net 6.0",
