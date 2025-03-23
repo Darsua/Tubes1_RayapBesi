@@ -5,6 +5,7 @@ using Robocode.TankRoyale.BotApi.Events;
 
 public class IkanLele : Bot
 {
+    bool isLeft;
     static void Main(string[] args)
     {
         new IkanLele().Start();
@@ -21,12 +22,15 @@ public class IkanLele : Bot
         BodyColor = Color.Gray;
         RadarColor = Color.Red;
         ScanColor = Color.Yellow;
+        isLeft = true;
 
         do
         {
+            SetTurnRadarRight(double.PositiveInfinity);
             SetTurnLeft(10_000);
             MaxSpeed = 5;
-            Forward(10_000);
+            SetForward(10_000);
+            Go();
             Rescan();
         } while (IsRunning);
     }
@@ -40,18 +44,19 @@ public class IkanLele : Bot
         double extraTurn = Math.Min(Math.Atan(36.0 / enemyDistance) * (180 / Math.PI), MaxRadarTurnRate);
 
         // Kalkulasi Senjata
-        // double bulletSpeed = CalcBulletSpeed(2);
-        // double timeImpact = enemyDistance / bulletSpeed;
-        // double futureX = e.X + Math.Cos(e.Direction) * e.Speed * timeImpact * 0.5;
-        // double futureY = e.Y + Math.Sin(e.Direction) * e.Speed * timeImpact * 0.5;
-        double gunTurn = NormalizeRelativeAngle(GunBearingTo(e.X, e.Y));
+        double bulletSpeed = CalcBulletSpeed(2);
+        double timeImpact = enemyDistance / bulletSpeed;
+        double futureX = e.X + Math.Cos(e.Direction) * e.Speed * timeImpact * 0.5;
+        double futureY = e.Y + Math.Sin(e.Direction) * e.Speed * timeImpact * 0.5;
+        double gunTurn = NormalizeRelativeAngle(GunBearingTo(futureX, futureY));
 
         radarTurn += radarTurn > 0 ? extraTurn : -extraTurn;
 
         SetTurnRadarLeft(radarTurn);
         SetTurnGunLeft(gunTurn);
-        if(Math.Abs(GunBearingTo(e.X,e.Y)) < 10 && Energy > 20){
-            Fire(2);
+        if(Math.Abs(GunBearingTo(e.X,e.Y)) < 10){
+            SetFireAssist(true);
+            Fire(3);
         } 
         
     }
@@ -65,18 +70,20 @@ public class IkanLele : Bot
         }
         if (e.IsRammed)
         {
-            TurnLeft(10);
+            SetTurnRadarLeft(NormalizeRelativeAngle(RadarBearingTo(e.X, e.Y)));
+            SetTurnGunLeft(NormalizeRelativeAngle(GunBearingTo(e.X, e.Y)));
+            SetTurnLeft(10);
         }
-    }
-
-    public override void OnHitWall(HitWallEvent e)
-    {
-        Forward(-200);
     }
 
     public override void OnHitByBullet(HitByBulletEvent e)
     {
-        Forward(50);
-        TurnRight(45);
+        if(isLeft){
+            TurnRight(NormalizeRelativeAngle(90 - (Direction - e.Bullet.Direction)));
+            isLeft = false;
+        } else {
+            TurnLeft(NormalizeRelativeAngle(90 - (Direction - e.Bullet.Direction)));
+            isLeft = true;
+        }   
     }
 }

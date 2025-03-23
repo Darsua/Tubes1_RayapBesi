@@ -9,8 +9,9 @@ public class SuperSub : Bot
     bool movingForward;
     bool isLeft;
     int dist = 40_000;
+    int dmg;
 
-    int dmg = 3;
+    bool stop;
     static void Main(string[] args)
     {
         new SuperSub().Start();
@@ -26,13 +27,19 @@ public class SuperSub : Bot
 
         movingForward = true;
         isLeft = true;
+        stop = false;
+        dmg = 3;
 
         while (IsRunning)
         {   
-            MaxSpeed = 5;
-            SetForward(40_000);
-            SetTurnLeft(40_000);
-            WaitFor(new TurnCompleteCondition(this));
+            if(!stop){
+                MaxSpeed = 5;
+                SetForward(40_000);
+                SetTurnLeft(40_000);
+            } else {
+                Stop();
+            }
+            Go();
         }
     }
 
@@ -40,16 +47,18 @@ public class SuperSub : Bot
     {
         var bearing = BearingTo(e.X, e.Y);
         double enemyDistance = DistanceTo(e.X, e.Y);
-        if(EnemyCount <= 2){
+        if(EnemyCount <= 2 && Energy > 30){
+            SetFireAssist(true);
             SetTurnLeft(bearing * 10_000);
-            if(enemyDistance < 200){
-                Stop();
+            if(enemyDistance < 150){
+                stop = true;
             } else {
                 SetForward(dist);
+                stop = false;
             }
         } 
         
-        if(Energy < 20){
+        if(Energy < 60){
             dmg = 2;
         }
         Fire(dmg);
@@ -75,7 +84,6 @@ public class SuperSub : Bot
 
     public void ReverseDirection()
     {
-        SetTurnLeft(0);
         if (movingForward)
         {
             SetBack(1000);
@@ -86,24 +94,17 @@ public class SuperSub : Bot
             SetForward(1000);
             movingForward = true;
         }
-
-        SetForward(40_000);
-        SetTurnLeft(40_000);
-        WaitFor(new TurnCompleteCondition(this));
     }
 
     public override void OnHitByBullet(HitByBulletEvent e)
     {
         if(isLeft){
-            SetTurnRight(NormalizeRelativeAngle(90 - (Direction - e.Bullet.Direction))*1_000);
+            TurnRight(NormalizeRelativeAngle(90 - (Direction - e.Bullet.Direction)));
             isLeft = false;
         } else {
-            SetTurnLeft(NormalizeRelativeAngle(90 - (Direction - e.Bullet.Direction))*1_000);
+            TurnLeft(NormalizeRelativeAngle(90 - (Direction - e.Bullet.Direction)));
             isLeft = true;
         }   
-        SetForward(40_000);
-
-        Rescan();
     }
 }
 
