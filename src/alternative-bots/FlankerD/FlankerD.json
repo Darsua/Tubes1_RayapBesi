@@ -1,0 +1,10 @@
+{
+  "name": "Flanker-D",
+  "version": "1.0",
+  "authors": ["Darsu"],
+  "description": "Aggressive bot that aims to flank the enemy from behind. Locks on and calculated firing.",
+  "homepage": "https://x.com/darsuas",
+  "countryCodes": ["id"],
+  "platform": ".Net 9.0",
+  "programmingLang": "C# 10.0"
+}
