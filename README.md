@@ -1,6 +1,6 @@
 
 # Robocode Tank Royale
-
+![alt text](https://github.com/Darsua/Tubes1_RayapBesi/blob/main/assets/foto.jpg)
 **Robocode Tank Royale** adalah sebuah permainan untuk membuat algoritma Tank yang dapat bertahan hingga akhir permainan. Pada projek ini, kami membuat Bot Tank yang mengimplementasikan ***algoritma greedy*** untuk mendapatkan skor setinggi mungkin.
 
 
