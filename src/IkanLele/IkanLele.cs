@@ -19,9 +19,13 @@ public class IkanLele : Bot
 
     public override void Run()
     {
-        BodyColor = Color.Gray;
-        RadarColor = Color.Red;
-        ScanColor = Color.Yellow;
+        // Warna bertema militer (camouflage)
+        BodyColor = Color.FromArgb(0x33, 0x44, 0x22);   
+        TurretColor = Color.FromArgb(0x55, 0x66, 0x33); 
+        RadarColor = Color.FromArgb(0xAA, 0xBB, 0x88);  
+        BulletColor = Color.FromArgb(0xFF, 0x66, 0x00); 
+        ScanColor = Color.FromArgb(0x00, 0x99, 0x66);  
+
         isLeft = true;
 
         do
@@ -55,8 +59,13 @@ public class IkanLele : Bot
         SetTurnRadarLeft(radarTurn);
         SetTurnGunLeft(gunTurn);
         if(Math.Abs(GunBearingTo(e.X,e.Y)) < 10){
-            SetFireAssist(true);
-            Fire(3);
+            if(Energy > 20){
+                SetFireAssist(true);
+                Fire(3);
+            } else if(Math.Abs(GunBearingTo(e.X,e.Y)) < 5){
+                SetFireAssist(true);
+                Fire(2);
+            }
         } 
         
     }
