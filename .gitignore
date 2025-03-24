@@ -1,3 +1,8 @@
-.private/
-src/*/bin/
-src/*/obj/
+.*/
+*.properties
+*.jar
+sample-bots-csharp-0.30.0/*
+src/alternative-bots/*/bin/*
+src/alternative-bots/*/obj/*
+src/main-bot/*/bin/*
+src/main-bot/*/obj/*
