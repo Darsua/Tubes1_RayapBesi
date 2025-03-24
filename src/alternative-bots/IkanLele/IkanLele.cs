@@ -6,6 +6,7 @@ using Robocode.TankRoyale.BotApi.Events;
 public class IkanLele : Bot
 {
     bool isLeft;
+    int dmg;
     static void Main(string[] args)
     {
         new IkanLele().Start();
@@ -27,6 +28,7 @@ public class IkanLele : Bot
         ScanColor = Color.FromArgb(0x00, 0x99, 0x66);  
 
         isLeft = true;
+        dmg = 3;
 
         do
         {
@@ -48,10 +50,11 @@ public class IkanLele : Bot
         double extraTurn = Math.Min(Math.Atan(36.0 / enemyDistance) * (180 / Math.PI), MaxRadarTurnRate);
 
         // Kalkulasi Senjata
-        double bulletSpeed = CalcBulletSpeed(2);
+        double enemyDirection = e.Direction < 0 ? (e.Direction + 180 % 360) : e.Direction;
+        double bulletSpeed = CalcBulletSpeed(dmg);
         double timeImpact = enemyDistance / bulletSpeed;
-        double futureX = e.X + Math.Cos(e.Direction) * e.Speed * timeImpact * 0.5;
-        double futureY = e.Y + Math.Sin(e.Direction) * e.Speed * timeImpact * 0.5;
+        double futureX = e.X + Math.Cos(enemyDirection) * e.Speed * timeImpact ;
+        double futureY = e.Y + Math.Sin(enemyDirection) * e.Speed * timeImpact ;
         double gunTurn = NormalizeRelativeAngle(GunBearingTo(futureX, futureY));
 
         radarTurn += radarTurn > 0 ? extraTurn : -extraTurn;
@@ -61,10 +64,11 @@ public class IkanLele : Bot
         if(Math.Abs(GunBearingTo(e.X,e.Y)) < 10){
             if(Energy > 20){
                 SetFireAssist(true);
-                Fire(3);
+                Fire(dmg);
             } else if(Math.Abs(GunBearingTo(e.X,e.Y)) < 5){
+                dmg = 2;
                 SetFireAssist(true);
-                Fire(2);
+                Fire(dmg);
             }
         } 
         
