@@ -58,6 +58,16 @@ Setelah menjalankan program, Anda perlu menyesuaikan config sesuai dengan source
 TUBES1_RAYAPBESI
 │── docs
 │── src
+│   └─ main-bot
+│       └─ FlankerD
+│           │── bin
+│           │── obj
+│           │── FlankerD.cmd
+│           │── FlankerD.cs
+│           │── FlankerD.csproj
+│           │── FlankerD.json
+│           └─  FlankerD.sh
+│
 │   └─ alternative-bots
 │       │── FlankerD
 │       │   │── bin
