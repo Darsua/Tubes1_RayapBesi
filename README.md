@@ -107,6 +107,14 @@ TUBES1_RAYAPBESI
 
 Dalam project ini kami menjadi lebih paham mengenai penggunaan algoritma greedy untuk menyelsaikan suatu persoalan. Algoritma ini dapat menjadi solusi walaupun belum tentu solusi yang diberikan merupakan solusi yang paling optimal.
 
+## Evaluation Table
+| No | Poin | Ya | Tidak |
+|----|--------------------------------------|----|------|
+| 1  | Bot dapat dijalankan pada Engine yang sudah dimodifikasi asisten. | ✔ |  |
+| 2  | Membuat 4 solusi greedy dengan heuristic yang berbeda. | ✔ |  |
+| 3  | Membuat laporan sesuai dengan spesifikasi. | ✔ |  |
+| 4  | Membuat video bonus dan diunggah pada Youtube. |  | ✔ |
+
 
 ## License
 
