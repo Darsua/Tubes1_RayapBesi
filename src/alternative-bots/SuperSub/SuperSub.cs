@@ -57,6 +57,17 @@ public class SuperSub : Bot
                 stop = false;
             }
         } 
+
+        if(EnemyCount == 1){
+            SetFireAssist(false);
+            SetTurnLeft(bearing * 10_000);
+            if(enemyDistance < 150){
+                stop = true;
+            } else {
+                SetForward(dist);
+                stop = false;
+            }
+        }
         
         if(Energy < 60){
             dmg = 2;
