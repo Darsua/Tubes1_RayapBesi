@@ -1,0 +1,16 @@
+{
+  "name": "RayapBesi - RimRunnerz",
+  "version": "4.1",
+  "authors": [
+    "M Hazim R Prajoda",
+    "Adhimas Aryo Bimo",
+    "Darrel Adinarya S"
+  ],
+  "description": "Bot ini menggunakan strategi greedy dengan selalu mencari dan mengikuti tepi peta terdekat.",
+  "homepage": "",
+  "countryCodes": [
+    "id"
+  ],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}

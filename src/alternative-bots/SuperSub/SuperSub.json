@@ -1,0 +1,10 @@
+{
+  "name": "RayapBesi - SuperSub",
+  "version": "1.0",
+  "authors": ["M Hazim R Prajoda", "Adhimas Aryo Bimo", "Darrel Adinarya S"],
+  "description": "Ganas di End Game :<, SuperSub Anthony Santos",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}
